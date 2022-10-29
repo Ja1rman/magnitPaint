@@ -7,7 +7,7 @@ class MagnetiсVector:
     length = 0
     angle = 0
 
-    def __init__(self, x, y, len, angle):
+    def __init__(self, x, y, len=1, angle=0):
         self.x = x
         self.y = y
         self.length = len
@@ -18,21 +18,18 @@ class MagnetiсVector:
         endy = self.y + self.length * math.sin(self.angle)
         event.widget.create_line(self.x, self.y, endx,
                                  endy, fill="black")
+        ug = self.angle + math.pi * 1.25
+        ug2 = ug - math.pi / 2
         event.widget.create_line(endx,
                                  endy,
-                                 endx + self.length / 3 * math.cos(
-                                     self.angle + math.pi + math.pi / 4),
-                                 endy + self.length * math.sin(
-                                     self.angle + math.pi + math.pi / 4), fill="black")
+                                 endx + self.length / 3 * math.cos(ug),
+                                 endy + self.length * math.sin(ug),
+                                 fill="black")
         event.widget.create_line(endx,
                                  endy,
-                                 endx + self.length / 3 * math.cos(
-                                     self.angle + math.pi - math.pi / 4),
-                                 endy + self.length * math.sin(
-                                     self.angle + math.pi - math.pi / 4), fill="black")
-
-    def erase(self, event):
-        event.widget.create_rectangle(0, 0, 500, 500, fill="white")
+                                 endx + self.length / 3 * math.cos(ug2),
+                                 endy + self.length * math.sin(ug2),
+                                 fill="black")
 
     def get_X(self):
         return self.x
